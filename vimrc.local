@@ -27,4 +27,7 @@ set pastetoggle=<F9>
 map <leader>t :NERDTreeToggle<CR>
 
 "" Remove trailing whitespace on <leader>S using vim-better-whitespace
-nnoremap <silent> <leader>S :StripWhitespace<CR>
+nnoremap <leader>S :StripWhitespace<CR>
+
+"" auto-pep8
+nnoremap <leader>8 :Autopep8<CR>

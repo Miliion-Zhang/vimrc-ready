@@ -87,6 +87,7 @@ NeoBundle "davidhalter/jedi-vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
 NeoBundle "Yggdroot/indentLine"
+NeoBundle "tell-k/vim-autopep8"
 
 
 "" Javascript Bundle
@@ -95,6 +96,7 @@ NeoBundle "scrooloose/syntastic"
 
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+" NeoBundle 'burnettk/vim-angular'
 
 
 "" HTML Bundle
