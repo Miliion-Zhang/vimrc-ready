@@ -31,3 +31,6 @@ nnoremap <leader>S :StripWhitespace<CR>
 
 "" auto-pep8
 nnoremap <leader>8 :Autopep8<CR>
+
+"" indent for javascript
+autocmd BufNewFile,BufRead *.js,*.ejs setlocal expandtab ts=2 sts=2 sw=2

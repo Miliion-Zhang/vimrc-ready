@@ -92,11 +92,12 @@ NeoBundle "tell-k/vim-autopep8"
 
 "" Javascript Bundle
 NeoBundle "scrooloose/syntastic"
+NeoBundle "moll/vim-node"
 
 
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
-" NeoBundle 'burnettk/vim-angular'
+NeoBundle 'burnettk/vim-angular'
 
 
 "" HTML Bundle
