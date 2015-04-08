@@ -93,6 +93,8 @@ NeoBundle "tell-k/vim-autopep8"
 "" Javascript Bundle
 NeoBundle "scrooloose/syntastic"
 NeoBundle "moll/vim-node"
+NeoBundle "kchmck/vim-coffee-script"
+NeoBundle 'lukaszkorecki/CoffeeTags'
 
 
 NeoBundle "scrooloose/syntastic"
