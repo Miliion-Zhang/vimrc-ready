@@ -94,7 +94,6 @@ NeoBundle "tell-k/vim-autopep8"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "moll/vim-node"
 NeoBundle "kchmck/vim-coffee-script"
-NeoBundle 'lukaszkorecki/CoffeeTags'
 
 
 NeoBundle "scrooloose/syntastic"
@@ -148,6 +147,7 @@ set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
+set smarttab
 
 "" Map leader to ,
 " Comments by zml, using '\' as leader key
@@ -472,7 +472,7 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab smarttab
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>

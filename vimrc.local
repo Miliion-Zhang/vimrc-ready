@@ -2,10 +2,11 @@
 
 
 "" Window move keys
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+let g:C_Ctrl_j = 'off'
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
 
 "" Jedi-VIM
 " Using <C-n> other than <C-Space> in jedi-vim
@@ -38,6 +39,4 @@ nnoremap <leader>8 :Autopep8<CR>
 "" indent for javascript and coffeescript
 autocmd BufNewFile,BufRead *.js,*.ejs setlocal expandtab ts=2 sts=2 sw=2
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-
-"" CoffeeTags settings
-let g:CoffeeAutoTagIncludeVars=1
+autocmd BufNewFile,BufRead *.html setlocal expandtab ts=2 sts=2 sw=2
