@@ -89,6 +89,8 @@ NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
 NeoBundle "Yggdroot/indentLine"
 NeoBundle "tell-k/vim-autopep8"
+" add by zml, for robot framework
+NeoBundle "mfukar/robotframework-vim"
 
 
 "" Javascript Bundle
