@@ -480,6 +480,14 @@ let g:rubycomplete_rails = 1
 autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab smarttab
 
+" For Jenkins
+autocmd Filetype groovy setlocal ts=4 sts=4 sw=4 expandtab smarttab
+autocmd BufReadPost Jenkinsfile set syntax=groovy
+autocmd BufReadPost Jenkinsfile set filetype=groovy
+
+" For robot framework
+autocmd Filetype robot ts=4 sts=4 sw=4 expandtab smarttab
+
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
