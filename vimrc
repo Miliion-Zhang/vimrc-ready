@@ -84,6 +84,7 @@ NeoBundle 'vim-scripts/c.vim'
 
 
 "" Python Bundle
+"  should install flake8, autopep8
 NeoBundle "davidhalter/jedi-vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
@@ -280,6 +281,9 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 nnoremap <silent> <leader>sh :VimShellCreate<CR>
 
+" vim-go
+let g:go_version_warning = 0
+
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
@@ -379,6 +383,11 @@ let g:syntastic_aggregate_errors = 1
 
 " vim-airline
 let g:airline_enable_syntastic = 1
+
+" Yggdroot/indentLine
+" Note: need conceal feature enabled in VIM. Use brew to install vim on MacOS
+let g:indentLine_enabled = 1
+let g:indentLine_char = '¦'
 
 "" Remove trailing whitespace on <leader>S
 nnoremap <silent> <leader>S :call TrimWhiteSpace()<cr>:let @/=''<CR>
