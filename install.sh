@@ -21,4 +21,8 @@ cp "vimrc.local" $VIMRC_LOCAL
 echo -e "\ninstall vim bundles..."
 vim +NeoBundleInstall +qall
 
+# install patched font
+echo -e "\nPlease install 'Monaco for Powerline' font manually if you haven't!"
+echo -e "url: https://gist.github.com/Miliion-Zhang/3510f068a80d2735fd87b805c1052edb"
+
 echo -e "\n\e[32mall done! enjoy it!\e[39m"
