@@ -66,6 +66,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \    },
       \ }
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'mileszs/ack.vim'
 
 "" Snippets
 NeoBundle 'SirVer/ultisnips'
@@ -333,6 +334,9 @@ set autoread
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
+
+"" ack
+nnoremap <Leader>a :Ack<Space>
 
 "" Git
 noremap <Leader>ga :!git add .<CR>
