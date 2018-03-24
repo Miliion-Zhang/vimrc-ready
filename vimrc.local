@@ -29,10 +29,29 @@ let g:tagbar_autofocus=0
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 autocmd BufEnter * nested :call tagbar#autoopen(0)
 
-"" Nerd tree & vim-nerdtree-tabs
+"" NERDTree & vim-nerdtree-tabs
 map <leader>tt :NERDTreeToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:nerdtree_tabs_autofind=1
+
+"" Highlight current file in NERDTree: https://stackoverflow.com/a/42154947
+" Check if NERDTree is open or active. Adding namespace "s:" to avoid conflicting.
+function! s:isNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! s:syncTree()
+  if &modifiable && s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call s:syncTree()
+
 
 "" Tagbar toggle
 map <leader>tb :TagbarToggle<CR>
