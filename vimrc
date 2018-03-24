@@ -67,14 +67,16 @@ NeoBundle 'Shougo/vimproc.vim', {
       \    },
       \ }
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
 
 "" Snippets
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+" Disabled by zml, due to TAB conflicting with neocomplete
+" NeoBundle 'SirVer/ultisnips'
+" NeoBundle 'honza/vim-snippets'
 
 "" Color
 NeoBundle 'tomasr/molokai'
@@ -96,6 +98,8 @@ NeoBundle "tell-k/vim-autopep8"
 " add by zml, for robot framework
 NeoBundle "mfukar/robotframework-vim"
 
+"" Java Bundle
+NeoBundle "artur-shaik/vim-javacomplete2"
 
 "" Javascript Bundle
 NeoBundle "moll/vim-node"
@@ -369,10 +373,10 @@ let g:ctrlp_map = ',e'
 let g:ctrlp_open_new_file = 'r'
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" let g:UltiSnipsEditSplit="vertical"
 
 " syntastic
 let g:syntastic_always_populate_loc_list=1
@@ -493,6 +497,9 @@ autocmd BufReadPost Jenkinsfile set filetype=groovy
 
 " For robot framework
 autocmd Filetype robot ts=4 sts=4 sw=4 expandtab smarttab
+
+" For Java
+autocmd FileType java set omnifunc=javacomplete#Complete
 
 
 "" Include user's local vim config
