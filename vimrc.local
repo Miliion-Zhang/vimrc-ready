@@ -24,11 +24,21 @@ let g:syntastic_python_flake8_args = '--ignore=E501'
 "" paste mode toggle
 set pastetoggle=<F9>
 
-"" Nerd tree toggle
+"" Tagbar
+let g:tagbar_autofocus=0
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+"" Nerd tree & vim-nerdtree-tabs
 map <leader>tt :NERDTreeToggle<CR>
+let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_autofind=1
 
 "" Tagbar toggle
 map <leader>tb :TagbarToggle<CR>
+
+"" vim-bufferkill
+noremap <leader>c :BD<CR>
 
 "" Remove trailing whitespace on <leader>S using vim-better-whitespace
 nnoremap <leader>S :StripWhitespace<CR>
