@@ -50,7 +50,10 @@ function! s:syncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call s:syncTree()
+" Note: use whitelist to only enable for some file types, or use blacklist to
+" disable triggering "__Tagbar__.2" buffer
+" autocmd BufEnter *.{py,java,c,h,cpp,md,sh} call s:syncTree()
+autocmd BufEnter *[^_][^_][^Tt][^a][^g][^b][^a][^r][^_][^_].* call s:syncTree()
 
 
 "" Tagbar toggle
