@@ -72,6 +72,8 @@ NeoBundle 'mileszs/ack.vim'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+NeoBundle "jiangmiao/auto-pairs"
+NeoBundle "tpope/vim-surround"
 
 "" Snippets
 " Disabled by zml, due to TAB conflicting with neocomplete
