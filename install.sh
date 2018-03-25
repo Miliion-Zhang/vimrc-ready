@@ -12,7 +12,7 @@ VIMRC="${HOME}/.vimrc"
 VIMRC_LOCAL="${HOME}/.vimrc.local"
 
 # backup user's previous settings
-echo -e "Backup your old vimrc setting files..."
+echo -e "INFO: Backup your old vimrc setting files..."
 if [ -f $VIMRC ]; then
 	mv $VIMRC "${VIMRC}.ori"
 fi
@@ -35,7 +35,8 @@ echo -e "      url: https://gist.github.com/Miliion-Zhang/3510f068a80d2735fd87b8
 
 # let user know the dependencies
 echo -e "\n${RED}WARN:${NC} VIM should be built with ${PURPLE}+conceal${NC}(for indentLine) ${PURPLE}+lua${NC}(for neocomplete) !!!"
-echo -e "      You can install VIM using brew on Mac or linuxbrew on Ubuntu."
-echo -e "\n${RED}WARN:${NC} Besides, ${PURPLE}'ctags'${NC}(for tagbar) and '${PURPLE}ack'${NC} are also required."
+echo -e "      You can install VIM using 'brew' on Mac or 'linuxbrew' on Ubuntu."
+echo -e "\n${RED}WARN:${NC} For python, ${PURPLE}'flake8'${NC} and ${PURPLE}'autopep8'${NC} are required for syntax checking & formatting."
+echo -e "\n${RED}WARN:${NC} Besides, ${PURPLE}'ctags'${NC}(for tagbar) and ${PURPLE}'ack'${NC} are also required."
 
-echo -e "\nINFO: ${GREEN}all done! enjoy it!${NC}"
+echo -e "\nINFO: ${GREEN}all done! enjoy it!${NC}\n"

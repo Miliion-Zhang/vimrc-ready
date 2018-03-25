@@ -20,4 +20,4 @@ Updating all bundles to the latest version, run VIM:
 
 ## NOTICE ##
 + Will use default '\' as `<leader> key` rather than ',' defined by vim-bootstrap, for more infos, please visit it's [github homepage](https://github.com/avelino/vim-bootstrap)
-+ Recommend VIM 7.4 with Python & Ruby support (needs `python python-devel ruby ruby-devel` installed if build from source), and you can build it from scratch following [this guide](http://www.fullybaked.co.uk/articles/installing-latest-vim-on-centos-from-source)
++ Recommend VIM 7.4+ with Python & Ruby & Lua support, please check the guide in the output of `install.sh`
