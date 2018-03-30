@@ -1,5 +1,19 @@
 "" Self-defined by minlin.zhang
 
+"" Turn off syntax highlight if the line is too long
+set synmaxcol=256
+
+" use '\\' to toggle between two files
+nnoremap <Leader><Leader> <C-^>
+
+"" Map semicolon to colon for inputing command
+nmap ; :
+
+"" paste mode toggle
+set pastetoggle=<F9>
+
+"" Reset <leader> key. Somehow it isn't working here, should modify it in .vimrc
+let mapleader='\'
 
 "" Window move keys
 let g:C_Ctrl_j = 'off'
@@ -8,28 +22,34 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
+"" vim-bufferkill
+noremap <leader>c :BD<CR>
+
+"" Remove trailing whitespace on <leader>S using vim-better-whitespace
+nnoremap <leader>S :StripWhitespace<CR>
+
+
 "" Jedi-VIM
 " Using <C-n> other than <C-Space> in jedi-vim
 let g:jedi#completions_command = "<C-n>"
 let g:jedi#popup_on_dot = 1
 let g:jedi#show_call_signatures = 1
-let g:jedi#use_tabs_not_buffers = 1
+" let g:jedi#use_tabs_not_buffers = 1
 
 "" Python fold settings
 set foldmethod=indent
 set foldlevel=99
 
-"" Reset <leader> key, not working here, should modify it in .vimrc
-let mapleader='\'
-
 "" syntastic flake8
 " Ignore E501 which is too long in line
 let g:syntastic_python_flake8_args = '--ignore=E501'
 
-"" paste mode toggle
-set pastetoggle=<F9>
+"" auto-pep8
+nnoremap <leader>8 :Autopep8<CR>
+
 
 "" Tagbar
+map <leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus=0
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 " autocmd BufEnter * nested :call tagbar#autoopen(0)
@@ -60,23 +80,11 @@ endfunction
 " autocmd BufEnter *.{py,java,c,h,cpp,md,sh} call s:syncTree()
 autocmd BufEnter *[^_][^_][^Tt][^a][^g][^b][^a][^r][^_][^_].* call s:syncTree()
 
-
-"" Tagbar toggle
-map <leader>tb :TagbarToggle<CR>
-
-"" vim-bufferkill
-noremap <leader>c :BD<CR>
-
-"" Remove trailing whitespace on <leader>S using vim-better-whitespace
-nnoremap <leader>S :StripWhitespace<CR>
-
-"" auto-pep8
-nnoremap <leader>8 :Autopep8<CR>
-
 "" indent for javascript and coffeescript
 autocmd BufNewFile,BufRead *.js,*.ejs setlocal expandtab ts=2 sts=2 sw=2
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 autocmd BufNewFile,BufRead *.html setlocal expandtab ts=2 sts=2 sw=2
+
 
 "" ------------ TLDR, the following is for neocomplete  ------------
 " Note: This option must set it in .vimrc (_vimrc).
