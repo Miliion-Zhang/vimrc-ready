@@ -22,6 +22,12 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
+" moving aroung in command mode
+cnoremap <c-h> <left>
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-l> <right>
+
 "" vim-bufferkill
 noremap <leader>c :BD<CR>
 
@@ -56,8 +62,23 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 "" NERDTree & vim-nerdtree-tabs
 map <leader>tt :NERDTreeToggle<CR>
+map <leader>tf :NERDTreeTabsFind<CR>
+map <leader>tl :call <SID>NERDTreeTabsAutoLocateCodeFilesToggle()<CR>
 let g:nerdtree_tabs_open_on_console_startup=1
-let g:nerdtree_tabs_autofind=1
+let g:nerdtree_tabs_autofind=0
+
+" self-defined variable. Set to 1 will auto locate code files in NERDTree
+" during buffer/tab switching. Please set g:nerdtree_tabs_autofind=0 to avoid
+" some conflicting issues.
+let g:nerdtree_tabs_autolocate_code_files=1
+
+function! s:NERDTreeTabsAutoLocateCodeFilesToggle()
+  if g:nerdtree_tabs_autolocate_code_files != 1
+    let g:nerdtree_tabs_autolocate_code_files = 1
+  else
+    let g:nerdtree_tabs_autolocate_code_files = 0
+  endif
+endfunction
 
 "" Highlight current file in NERDTree: https://stackoverflow.com/a/42154947
 " Check if NERDTree is open or active. Adding namespace "s:" to avoid conflicting.
@@ -68,8 +89,13 @@ endfunction
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! s:syncTree()
+  " echom 'from zml, syncTree is called!'
+  if g:nerdtree_tabs_autolocate_code_files != 1
+    return
+  endif
+
   if &modifiable && s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
+    NERDTreeTabsFind
     wincmd p
   endif
 endfunction
@@ -77,8 +103,9 @@ endfunction
 " Highlight currently open buffer in NERDTree
 " Note: use whitelist to only enable for some file types, or use blacklist to
 " disable triggering "__Tagbar__.2" buffer
+" autocmd BufEnter *[^_][^_][^Tt][^a][^g][^b][^a][^r][^_][^_].* call s:syncTree()
 " autocmd BufEnter *.{py,java,c,h,cpp,md,sh} call s:syncTree()
-autocmd BufEnter *[^_][^_][^Tt][^a][^g][^b][^a][^r][^_][^_].* call s:syncTree()
+autocmd BufEnter *.{py,java,c,h,cpp,md,sh} call s:syncTree()
 
 "" indent for javascript and coffeescript
 autocmd BufNewFile,BufRead *.js,*.ejs setlocal expandtab ts=2 sts=2 sw=2
