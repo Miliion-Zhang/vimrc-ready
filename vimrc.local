@@ -3,6 +3,11 @@
 "" Turn off syntax highlight if the line is too long
 set synmaxcol=256
 
+"" Show invisible chars
+"  ref: https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
+set list
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
 " use '\\' to toggle between two files
 nnoremap <Leader><Leader> <C-^>
 
@@ -49,6 +54,8 @@ set foldlevel=99
 "" syntastic flake8
 " Ignore E501 which is too long in line
 let g:syntastic_python_flake8_args = '--ignore=E501'
+nnoremap <leader>sc :SyntasticCheck<CR>
+nnoremap <leader>sr :SyntasticReset<CR>
 
 "" auto-pep8
 nnoremap <leader>8 :Autopep8<CR>
