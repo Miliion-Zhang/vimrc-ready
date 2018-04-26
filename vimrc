@@ -353,6 +353,9 @@ noremap <Leader>gr :Gremove<CR>
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
+" due to <Tab> remapping, <C-I> would be changed too. So map ,i to <C-I>
+" see: https://stackoverflow.com/a/14669883
+nnoremap ,i <C-I>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
