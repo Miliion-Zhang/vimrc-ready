@@ -75,6 +75,8 @@ NeoBundle "majutsushi/tagbar"
 NeoBundle "jiangmiao/auto-pairs"
 NeoBundle "tpope/vim-surround"
 
+NeoBundle "blindFS/vim-translator"
+
 "" Snippets
 " Disabled by zml, due to TAB conflicting with neocomplete
 " NeoBundle 'SirVer/ultisnips'
