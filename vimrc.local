@@ -57,8 +57,9 @@ set foldmethod=indent
 set foldlevel=99
 
 "" syntastic flake8
-" Ignore E501 which is too long in line
-let g:syntastic_python_flake8_args = '--ignore=E501'
+" E501 which is too long in line. We can ignore it, or increase limit from 80 to 120
+" let g:syntastic_python_flake8_args = '--ignore=E501'
+let g:syntastic_python_flake8_args = '--max-line-length=120'
 nnoremap <leader>sc :SyntasticCheck<CR>
 nnoremap <leader>sr :SyntasticReset<CR>
 
