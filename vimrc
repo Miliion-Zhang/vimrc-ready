@@ -5,10 +5,10 @@
 "
 "" INSTALL
 " Put this vimrc file and vimrc.local file into `~/.vimrc/`, and execute VIM:
-" vim +NeoBundleInstall +qall
+" vim +PlugInstall +qall
 "
 " Updating all bundles to the latest version, run VIM:
-" :NeoBundleUpdate
+" :PlugUpdate
 "
 "" NOTICE
 " The <leader> key will use default '\' other than ',', for more info, please
@@ -18,127 +18,226 @@
 
 
 "*****************************************************************************
-"" NeoBundle core
+"" vim-plug core
 "*****************************************************************************
+let $BUNDLE = expand("~/.vim/plugged_bundles")
+let $PLUG_DIR = expand("$BUNDLE/vim-plug")
 
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if empty(glob(expand("$PLUG_DIR/plug.vim")))
+  silent !mkdir -p $PLUG_DIR
+  silent !rm -rf $PLUG_DIR/.git*
+  silent !git clone https://github.com/junegunn/vim-plug.git $PLUG_DIR
+  autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
 endif
+source $PLUG_DIR/plug.vim
 
-let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
 
-if !filereadable(neobundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-endif
+let g:plug_timeout = 120
+call plug#begin(expand($BUNDLE))
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Make sure you use single quotes
+Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/CSApprox'
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/neocomplete'
+Plug 'mileszs/ack.vim'
+Plug 'qpkorr/vim-bufkill'
+Plug 'w0rp/ale'
+Plug 'majutsushi/tagbar'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-"*****************************************************************************
-"" NeoBundle install packages
-"*****************************************************************************
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'vim-scripts/grep.vim'
-NeoBundle 'vim-scripts/CSApprox'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle 'w0rp/ale'
-NeoBundle "majutsushi/tagbar"
-NeoBundle "jiangmiao/auto-pairs"
-NeoBundle "tpope/vim-surround"
-
-NeoBundle "blindFS/vim-translator"
+" Plug 'blindFS/vim-translator'
 
 "" Snippets
 " Disabled by zml, due to TAB conflicting with neocomplete
-" NeoBundle 'SirVer/ultisnips'
-" NeoBundle 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 "" Color
-NeoBundle 'tomasr/molokai'
+Plug 'tomasr/molokai'
 
 "" Vim better whitespace
-NeoBundle "ntpeters/vim-better-whitespace"
+Plug 'ntpeters/vim-better-whitespace'
 
 
 "" Custom bundles
 
-NeoBundle 'vim-scripts/c.vim'
+Plug 'vim-scripts/c.vim', { 'for': ['c', 'cpp'] }
 
 
 "" Python Bundle
 "  should install flake8, autopep8
-NeoBundle "davidhalter/jedi-vim"
-NeoBundle "Yggdroot/indentLine"
-NeoBundle "tell-k/vim-autopep8"
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'tell-k/vim-autopep8', { 'for': 'python' }
+Plug 'Yggdroot/indentLine'
 " add by zml, for robot framework
-NeoBundle "mfukar/robotframework-vim"
+Plug 'mfukar/robotframework-vim'
 
 "" Java Bundle
-NeoBundle "artur-shaik/vim-javacomplete2"
+" Plug 'artur-shaik/vim-javacomplete2'
 
 "" Javascript Bundle
-NeoBundle "moll/vim-node"
-NeoBundle "kchmck/vim-coffee-script"
+Plug 'moll/vim-node', { 'for': 'javascript' }
+" Plug 'kchmck/vim-coffee-script'
+" Plug 'burnettk/vim-angular'
 
-NeoBundle 'burnettk/vim-angular'
 
 
 "" HTML Bundle
-NeoBundle 'vim-scripts/HTML-AutoCloseTag'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'tpope/vim-haml'
+Plug 'vim-scripts/HTML-AutoCloseTag'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml'
 
 
 "" Go Lang Bundle
-NeoBundle "fatih/vim-go"
+Plug 'fatih/vim-go', { 'for': ['go', 'golang'] }
 
 
 "" Ruby Bundle
-NeoBundle "tpope/vim-rails"
-NeoBundle "tpope/vim-rake"
-NeoBundle "tpope/vim-projectionist"
-NeoBundle "thoughtbot/vim-rspec"
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rake', { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+" Plug 'tpope/vim-projectionist'
+
+
+call plug#end()
+
+
+""*****************************************************************************
+""" NeoBundle core
+""*****************************************************************************
+"if has('vim_starting')
+"  set nocompatible               " Be iMproved
+
+"  " Required:
+"  set runtimepath+=~/.vim/bundle/neobundle.vim/
+"endif
+
+"let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
+
+"if !filereadable(neobundle_readme)
+"  echo "Installing NeoBundle..."
+"  echo ""
+"  silent !mkdir -p ~/.vim/bundle
+"  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
+"endif
+
+"" Required:
+"call neobundle#begin(expand('~/.vim/bundle/'))
+
+"" Let NeoBundle manage NeoBundle
+"" Required:
+"NeoBundleFetch 'Shougo/neobundle.vim'
+
+""*****************************************************************************
+""" NeoBundle install packages
+""*****************************************************************************
+"NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'jistr/vim-nerdtree-tabs'
+"NeoBundle 'tpope/vim-commentary'
+"NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'vim-airline/vim-airline'
+"NeoBundle 'vim-airline/vim-airline-themes'
+"NeoBundle 'airblade/vim-gitgutter'
+"NeoBundle 'sheerun/vim-polyglot'
+"NeoBundle 'vim-scripts/grep.vim'
+"NeoBundle 'vim-scripts/CSApprox'
+"NeoBundle 'Shougo/vimproc.vim', {
+"      \ 'build' : {
+"      \     'windows' : 'tools\\update-dll-mingw',
+"      \     'cygwin' : 'make -f make_cygwin.mak',
+"      \     'mac' : 'make -f make_mac.mak',
+"      \     'unix' : 'make -f make_unix.mak',
+"      \    },
+"      \ }
+"NeoBundle 'Shougo/vimshell.vim'
+"NeoBundle 'Shougo/neocomplete'
+"NeoBundle 'mileszs/ack.vim'
+"NeoBundle 'qpkorr/vim-bufkill'
+"NeoBundle 'w0rp/ale'
+"NeoBundle "majutsushi/tagbar"
+"NeoBundle "jiangmiao/auto-pairs"
+"NeoBundle "tpope/vim-surround"
+
+"NeoBundle "blindFS/vim-translator"
+
+""" Snippets
+"" Disabled by zml, due to TAB conflicting with neocomplete
+"" NeoBundle 'SirVer/ultisnips'
+"" NeoBundle 'honza/vim-snippets'
+
+""" Color
+"NeoBundle 'tomasr/molokai'
+
+""" Vim better whitespace
+"NeoBundle "ntpeters/vim-better-whitespace"
+
+
+""" Custom bundles
+
+"NeoBundle 'vim-scripts/c.vim'
+
+
+""" Python Bundle
+""  should install flake8, autopep8
+"NeoBundle "davidhalter/jedi-vim"
+"NeoBundle "Yggdroot/indentLine"
+"NeoBundle "tell-k/vim-autopep8"
+"" add by zml, for robot framework
+"NeoBundle "mfukar/robotframework-vim"
+
+""" Java Bundle
+"NeoBundle "artur-shaik/vim-javacomplete2"
+
+""" Javascript Bundle
+"NeoBundle "moll/vim-node"
+"NeoBundle "kchmck/vim-coffee-script"
+
+"NeoBundle 'burnettk/vim-angular'
+
+
+""" HTML Bundle
+"NeoBundle 'vim-scripts/HTML-AutoCloseTag'
+"NeoBundle 'hail2u/vim-css3-syntax'
+"NeoBundle 'gorodinskiy/vim-coloresque'
+"NeoBundle 'tpope/vim-haml'
+
+
+""" Go Lang Bundle
+"NeoBundle "fatih/vim-go"
+
+
+""" Ruby Bundle
+"NeoBundle "tpope/vim-rails"
+"NeoBundle "tpope/vim-rake"
+"NeoBundle "tpope/vim-projectionist"
+"NeoBundle "thoughtbot/vim-rspec"
 
 
 
-call neobundle#end()
+"call neobundle#end()
+
+" " If there are uninstalled bundles found on startup,
+" " this will conveniently prompt you to install them.
+" NeoBundleCheck
+
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 "*****************************************************************************
 "" Basic Setup

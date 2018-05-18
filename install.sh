@@ -27,7 +27,7 @@ cp "vimrc.local" $VIMRC_LOCAL
 
 # install the bundles
 echo -e "\nINFO: install vim bundles..."
-vim +NeoBundleInstall +qall
+vim +PlugInstall +qall
 
 # install patched font
 echo -e "\n${RED}WARN:${NC} Please install ${PURPLE}'Monaco for Powerline'${NC} font manually if you haven't!"
@@ -37,6 +37,6 @@ echo -e "      url: https://gist.github.com/Miliion-Zhang/3510f068a80d2735fd87b8
 echo -e "\n${RED}WARN:${NC} VIM should be built with ${PURPLE}+conceal${NC}(for indentLine) ${PURPLE}+lua${NC}(for neocomplete) !!!"
 echo -e "      You can install VIM using 'brew' on Mac or 'linuxbrew' on Ubuntu."
 echo -e "\n${RED}WARN:${NC} For python, ${PURPLE}'flake8'${NC} and ${PURPLE}'autopep8'${NC} are required for syntax checking & formatting."
-echo -e "\n${RED}WARN:${NC} Besides, ${PURPLE}'ctags'${NC}(for tagbar) and ${PURPLE}'ack'${NC} are also required."
+echo -e "\n${RED}WARN:${NC} Besides, ${PURPLE}'universal-ctags'${NC}(for tagbar) and ${PURPLE}'ack'${NC} are also required."
 
 echo -e "\nINFO: ${GREEN}all done! enjoy it!${NC}\n"
