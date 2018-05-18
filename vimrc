@@ -70,7 +70,7 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle "scrooloose/syntastic"
+NeoBundle 'w0rp/ale'
 NeoBundle "majutsushi/tagbar"
 NeoBundle "jiangmiao/auto-pairs"
 NeoBundle "tpope/vim-surround"
@@ -245,7 +245,6 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#sta
 
 " vim-airline
 let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
@@ -385,17 +384,31 @@ let g:ctrlp_open_new_file = 'r'
 " let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " let g:UltiSnipsEditSplit="vertical"
 
-" syntastic
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors = 1
 
-" vim-airline
-let g:airline_enable_syntastic = 1
+" Ale
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+" E501 which is too long in line. We can ignore it, or increase limit from 80 to 120
+" let g:ale_python_flake8_options = '--ignore=E501'
+let g:ale_python_flake8_options = '--max-line-length=120'
+
+let g:ale_sign_error = '⚠'
+let g:ale_sign_warning = '✗'
+
 
 " Yggdroot/indentLine
 " Note: need conceal feature enabled in VIM. Use brew to install vim on MacOS
@@ -478,9 +491,6 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
-
-" syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
