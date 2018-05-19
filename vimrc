@@ -346,6 +346,8 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 let $FZF_DEFAULT_OPTS = '
     \ --bind up:preview-up,down:preview-down
     \'
+" use ag to respect .gitignore settings: https://github.com/junegunn/fzf.vim/issues/121
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
@@ -424,7 +426,8 @@ noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 
-"" Close buffer
+"" vim-bufkill without creating mappings like <leader>bx
+let g:BufKillCreateMappings = 0
 noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
