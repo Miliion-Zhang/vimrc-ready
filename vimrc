@@ -477,6 +477,26 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " let g:ctrlp_open_new_file = 'r'
 
 "" fzf.vim
+" enable preview scroll and use Molokai color
+let $FZF_DEFAULT_OPTS = '
+    \ --bind up:preview-up,down:preview-down
+    \'
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with preview window that can be hidden with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%', '?'),
+  \                 <bang>0)
+
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>a :Ag<CR>
