@@ -41,22 +41,26 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/neocomplete'
-Plug 'mileszs/ack.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+
+" replace ctrlp+grep+ack with fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
+" Plug 'kien/ctrlp.vim'
+" Plug 'vim-scripts/grep.vim'
+" Plug 'mileszs/ack.vim'
 
 " Plug 'blindFS/vim-translator'
 
@@ -377,9 +381,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 noremap <F3> :NERDTreeToggle<CR>
 
-" grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
 
 " vimshell
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -437,8 +438,6 @@ set autoread
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
-"" ack
-nnoremap <Leader>a :Ack<Space>
 
 "" Git
 noremap <Leader>ga :!git add .<CR>
@@ -466,16 +465,21 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-"" ctrlp.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.class
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|tox)$'
-let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-let g:ctrlp_use_caching = 0
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_map = ',e'
-let g:ctrlp_open_new_file = 'r'
+" "" ctrlp.vim
+" set wildmode=list:longest,list:full
+" set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.class
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|tox)$'
+" let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
+" let g:ctrlp_use_caching = 0
+" cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" noremap <leader>b :CtrlPBuffer<CR>
+" let g:ctrlp_map = ',e'
+" let g:ctrlp_open_new_file = 'r'
+
+"" fzf.vim
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>a :Ag<CR>
 
 " snippets
 " let g:UltiSnipsExpandTrigger="<tab>"

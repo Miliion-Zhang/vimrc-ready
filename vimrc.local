@@ -57,7 +57,7 @@ set foldmethod=indent
 set foldlevel=99
 
 "" Toggle ALE highlight
-nnoremap <leader>ah :call <SID>ALEHighlightToggle()<CR>
+nnoremap <leader>ta :call <SID>ALEHighlightToggle()<CR>
 
 let g:ale_highlight_enabled = 1
 function! s:ALEHighlightToggle()
