@@ -58,9 +58,6 @@ Plug 'tpope/vim-surround'
 " replace ctrlp+grep+ack with fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-" Plug 'kien/ctrlp.vim'
-" Plug 'vim-scripts/grep.vim'
-" Plug 'mileszs/ack.vim'
 
 " Plug 'blindFS/vim-translator'
 
@@ -116,128 +113,7 @@ Plug 'tpope/vim-rake', { 'for': 'ruby' }
 Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 " Plug 'tpope/vim-projectionist'
 
-
 call plug#end()
-
-
-""*****************************************************************************
-""" NeoBundle core
-""*****************************************************************************
-"if has('vim_starting')
-"  set nocompatible               " Be iMproved
-
-"  " Required:
-"  set runtimepath+=~/.vim/bundle/neobundle.vim/
-"endif
-
-"let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-
-"if !filereadable(neobundle_readme)
-"  echo "Installing NeoBundle..."
-"  echo ""
-"  silent !mkdir -p ~/.vim/bundle
-"  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-"endif
-
-"" Required:
-"call neobundle#begin(expand('~/.vim/bundle/'))
-
-"" Let NeoBundle manage NeoBundle
-"" Required:
-"NeoBundleFetch 'Shougo/neobundle.vim'
-
-""*****************************************************************************
-""" NeoBundle install packages
-""*****************************************************************************
-"NeoBundle 'scrooloose/nerdtree'
-"NeoBundle 'jistr/vim-nerdtree-tabs'
-"NeoBundle 'tpope/vim-commentary'
-"NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'vim-airline/vim-airline'
-"NeoBundle 'vim-airline/vim-airline-themes'
-"NeoBundle 'airblade/vim-gitgutter'
-"NeoBundle 'sheerun/vim-polyglot'
-"NeoBundle 'vim-scripts/grep.vim'
-"NeoBundle 'vim-scripts/CSApprox'
-"NeoBundle 'Shougo/vimproc.vim', {
-"      \ 'build' : {
-"      \     'windows' : 'tools\\update-dll-mingw',
-"      \     'cygwin' : 'make -f make_cygwin.mak',
-"      \     'mac' : 'make -f make_mac.mak',
-"      \     'unix' : 'make -f make_unix.mak',
-"      \    },
-"      \ }
-"NeoBundle 'Shougo/vimshell.vim'
-"NeoBundle 'Shougo/neocomplete'
-"NeoBundle 'mileszs/ack.vim'
-"NeoBundle 'qpkorr/vim-bufkill'
-"NeoBundle 'w0rp/ale'
-"NeoBundle "majutsushi/tagbar"
-"NeoBundle "jiangmiao/auto-pairs"
-"NeoBundle "tpope/vim-surround"
-
-"NeoBundle "blindFS/vim-translator"
-
-""" Snippets
-"" Disabled by zml, due to TAB conflicting with neocomplete
-"" NeoBundle 'SirVer/ultisnips'
-"" NeoBundle 'honza/vim-snippets'
-
-""" Color
-"NeoBundle 'tomasr/molokai'
-
-""" Vim better whitespace
-"NeoBundle "ntpeters/vim-better-whitespace"
-
-
-""" Custom bundles
-
-"NeoBundle 'vim-scripts/c.vim'
-
-
-""" Python Bundle
-""  should install flake8, autopep8
-"NeoBundle "davidhalter/jedi-vim"
-"NeoBundle "Yggdroot/indentLine"
-"NeoBundle "tell-k/vim-autopep8"
-"" add by zml, for robot framework
-"NeoBundle "mfukar/robotframework-vim"
-
-""" Java Bundle
-"NeoBundle "artur-shaik/vim-javacomplete2"
-
-""" Javascript Bundle
-"NeoBundle "moll/vim-node"
-"NeoBundle "kchmck/vim-coffee-script"
-
-"NeoBundle 'burnettk/vim-angular'
-
-
-""" HTML Bundle
-"NeoBundle 'vim-scripts/HTML-AutoCloseTag'
-"NeoBundle 'hail2u/vim-css3-syntax'
-"NeoBundle 'gorodinskiy/vim-coloresque'
-"NeoBundle 'tpope/vim-haml'
-
-
-""" Go Lang Bundle
-"NeoBundle "fatih/vim-go"
-
-
-""" Ruby Bundle
-"NeoBundle "tpope/vim-rails"
-"NeoBundle "tpope/vim-rake"
-"NeoBundle "tpope/vim-projectionist"
-"NeoBundle "thoughtbot/vim-rspec"
-
-
-
-"call neobundle#end()
-
-" " If there are uninstalled bundles found on startup,
-" " this will conveniently prompt you to install them.
-" NeoBundleCheck
 
 
 " Required:
@@ -465,17 +341,6 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-" "" ctrlp.vim
-" set wildmode=list:longest,list:full
-" set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,*.class
-" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|tox)$'
-" let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-" let g:ctrlp_use_caching = 0
-" cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-" noremap <leader>b :CtrlPBuffer<CR>
-" let g:ctrlp_map = ',e'
-" let g:ctrlp_open_new_file = 'r'
-
 "" fzf.vim
 " enable preview scroll and use Molokai color
 let $FZF_DEFAULT_OPTS = '
@@ -500,6 +365,7 @@ command! -bang -nargs=* Ag
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>a :Ag<CR>
+
 
 " snippets
 " let g:UltiSnipsExpandTrigger="<tab>"
