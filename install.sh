@@ -34,9 +34,10 @@ echo -e "\n${RED}WARN:${NC} Please install ${PURPLE}'Monaco for Powerline'${NC} 
 echo -e "      url: https://gist.github.com/Miliion-Zhang/3510f068a80d2735fd87b805c1052edb"
 
 # let user know the dependencies
-echo -e "\n${RED}WARN:${NC} VIM should be built with ${PURPLE}+conceal${NC}(for indentLine) ${PURPLE}+lua${NC}(for neocomplete) !!!"
+echo -e "\n${RED}WARN:${NC} VIM should be built with ${PURPLE}+conceal${NC}(for indentLine) ${PURPLE}+python${NC} !!!"
 echo -e "      You can install VIM using 'brew' on Mac or 'linuxbrew' on Ubuntu."
 echo -e "\n${RED}WARN:${NC} For python, ${PURPLE}'flake8'${NC} and ${PURPLE}'autopep8'${NC} are required for syntax checking & formatting."
+echo -e "\n${RED}WARN:${NC} For YCM, ${PURPLE}'clang/cmake'${NC} and ${PURPLE}'java/go/node'${NC} are required."
 echo -e "\n${RED}WARN:${NC} Besides, ${PURPLE}'universal-ctags'${NC}(for tagbar) and ${PURPLE}'ag'${NC} are also required."
 
 echo -e "\nINFO: ${GREEN}all done! enjoy it!${NC}\n"

@@ -32,7 +32,7 @@ endif
 source $PLUG_DIR/plug.vim
 
 
-let g:plug_timeout = 120
+let g:plug_timeout = 600
 call plug#begin(expand($BUNDLE))
 
 " Make sure you use single quotes
@@ -44,16 +44,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'  " Shame on you!!! Vim was slow even if only adding a new line in python file
 Plug 'vim-scripts/CSApprox'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Shougo/neocomplete'
 Plug 'qpkorr/vim-bufkill'
 Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --java-completer --js-completer'  }
 
 " replace ctrlp+grep+ack with fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -80,14 +80,12 @@ Plug 'vim-scripts/c.vim', { 'for': ['c', 'cpp'] }
 
 "" Python Bundle
 "  should install flake8, autopep8
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'Yggdroot/indentLine'
 " add by zml, for robot framework
 Plug 'mfukar/robotframework-vim'
 
 "" Java Bundle
-" Plug 'artur-shaik/vim-javacomplete2'
 
 "" Javascript Bundle
 Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -474,16 +472,6 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=12
     \ formatoptions+=croq softtabstop=4 smartindent
     \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -500,7 +488,7 @@ autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab smarttab
 
 " For Jenkins
-autocmd Filetype groovy setlocal ts=4 sts=4 sw=4 expandtab smarttab
+autocmd Filetype groovy setlocal ts=4 sts=4 sw=4 expandtab smarttab colorcolumn=121
 autocmd BufReadPost Jenkinsfile set syntax=groovy
 autocmd BufReadPost Jenkinsfile set filetype=groovy
 
@@ -508,8 +496,42 @@ autocmd BufReadPost Jenkinsfile set filetype=groovy
 autocmd Filetype robot ts=4 sts=4 sw=4 expandtab smarttab
 
 " For Java
-autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd Filetype java setlocal ts=4 sts=4 sw=4 expandtab smarttab colorcolumn=121
 
+" For YouCompleteMe
+set pumheight=5  " limit the size of the popupmenu for completions so you can see code still
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_semantic_triggers =  {
+      \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{3}'],
+      \ 'cs,lua,javascript': ['re!\w{3}'],
+      \ }
+
+" let lombok work with Java:
+" https://github.com/eclipse/eclipse.jdt.ls/issues/365#issuecomment-370067887
+let $VIM_JAVA_JARS = expand("~/.vim/java_jars")
+let $LOMBOK_JAR = expand("$VIM_JAVA_JARS/lombok.jar")
+if empty(glob(expand("$LOMBOK_JAR")))
+  silent !mkdir -p $VIM_JAVA_JARS
+  silent !wget https://projectlombok.org/downloads/lombok.jar -O $LOMBOK_JAR
+endif
+let $JAVA_TOOL_OPTIONS = expand("-javaagent:$LOMBOK_JAR -Xbootclasspath/a:$LOMBOK_JAR")
+
+" Use same mappings like jedi-vim
+nnoremap <silent> <Leader>d :YcmCompleter GoTo<CR>
+nnoremap <silent> <Leader>g :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> <Leader>n :YcmCompleter GoToReferences<CR>
+nnoremap <silent> <Leader>r :YcmCompleter RefactorRename<CR>
+nnoremap <silent> K :YcmCompleter GetDoc<CR>
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
