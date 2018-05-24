@@ -533,6 +533,10 @@ nnoremap <silent> <Leader>n :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <Leader>r :YcmCompleter RefactorRename<CR>
 nnoremap <silent> K :YcmCompleter GetDoc<CR>
 
+" Use <CR> as select the candidate rather than insert a new line
+" https://github.com/Valloric/YouCompleteMe/issues/1282#issuecomment-228254509
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<ESC>a" : "\<CR>"
+
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
