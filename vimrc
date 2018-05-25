@@ -53,6 +53,7 @@ Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --java-completer --js-completer'  }
 
 " replace ctrlp+grep+ack with fzf
@@ -536,6 +537,12 @@ nnoremap <silent> K :YcmCompleter GetDoc<CR>
 " Use <CR> as select the candidate rather than insert a new line
 " https://github.com/Valloric/YouCompleteMe/issues/1282#issuecomment-228254509
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<ESC>a" : "\<CR>"
+
+
+"" accelerated-smooth-scroll
+let g:ac_smooth_scroll_fb_sleep_time_msec = 2
+let g:ac_smooth_scroll_du_sleep_time_msec = 2
+let g:ac_smooth_scroll_min_limit_msec = 80
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
