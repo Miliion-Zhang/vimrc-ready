@@ -83,6 +83,7 @@ Plug 'vim-scripts/c.vim', { 'for': ['c', 'cpp'] }
 "  should install flake8, autopep8
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'Yggdroot/indentLine'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " add by zml, for robot framework
 Plug 'mfukar/robotframework-vim'
 
