@@ -81,6 +81,7 @@ Plug 'vim-scripts/c.vim', { 'for': ['c', 'cpp'] }
 
 "" Python Bundle
 "  should install flake8, autopep8
+Plug 'davidhalter/jedi-vim', { 'for': 'python'  }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'Yggdroot/indentLine'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -538,6 +539,17 @@ nnoremap <silent> K :YcmCompleter GetDoc<CR>
 " Use <CR> as select the candidate rather than insert a new line
 " https://github.com/Valloric/YouCompleteMe/issues/1282#issuecomment-228254509
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<ESC>a" : "\<CR>"
+
+
+"" jedi-vim, only use `show_call_signatures` feature
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+let g:jedi#show_call_signatures_delay = 0
 
 
 "" accelerated-smooth-scroll
