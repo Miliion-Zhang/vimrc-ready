@@ -367,7 +367,11 @@ command! -bang -nargs=* Ag
 
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>a :Ag<CR>
+" Grep the word under cursor. Use `:Ag` directly if you want to input each char
+nnoremap <silent> <Leader>a :Ag <C-R><C-W><CR>
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 
 " snippets
