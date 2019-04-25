@@ -92,6 +92,7 @@ Plug 'mfukar/robotframework-vim'
 
 "" Javascript Bundle
 Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'posva/vim-vue'
 " Plug 'kchmck/vim-coffee-script'
 " Plug 'burnettk/vim-angular'
 
