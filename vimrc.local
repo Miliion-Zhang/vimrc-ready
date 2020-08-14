@@ -141,3 +141,7 @@ autocmd BufEnter *.{py,java,c,h,cpp,md,sh} call s:syncTree()
 autocmd BufNewFile,BufRead *.js,*.ejs setlocal expandtab ts=2 sts=2 sw=2
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 autocmd BufNewFile,BufRead *.html setlocal expandtab ts=2 sts=2 sw=2
+
+"" For JSON and Spinnaker pipeline
+autocmd BufNewFile,BufRead *.json,*.pp setlocal syntax=javascript
+
