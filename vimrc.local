@@ -15,7 +15,15 @@ nnoremap <Leader><Leader> <C-^>
 nmap ; :
 
 "" paste mode toggle
+set nopaste
 set pastetoggle=<F9>
+
+"" Set tabs again, because the paste/pastetoggle setting will reset it
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
 
 "" Reset <leader> key. Somehow it isn't working here, should modify it in .vimrc
 let mapleader='\'
@@ -78,7 +86,8 @@ nnoremap <leader>8 :Autopep8<CR>
 "" Tagbar
 map <leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus=0
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :TagbarClose
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
 " autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 "" NERDTree & vim-nerdtree-tabs
